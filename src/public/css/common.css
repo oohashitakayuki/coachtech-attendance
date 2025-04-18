@@ -1,0 +1,59 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background: #000;
+}
+
+.header__logo {
+  width: 80%;
+  margin-left: 30px;
+}
+
+.header-nav__menu {
+  display: flex;
+  align-items: center;
+}
+
+.header-nav__item {
+  margin-right: 20px;
+}
+
+.header-nav__link {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.header-nav__logout {
+  margin-right: 10px;
+  color: #FFF;
+  background: #000;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.bg-attendance {
+  background-color: #F0EFF2;
+}
+
+.bg-auth {
+  background-color: #FFF;
+}
+
+.submit-button {
+  height: 40px;
+  color: #FFF;
+  background: #000;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+}
+
+.link-button {
+  color: #0077DE;
+  text-decoration: none;
+}

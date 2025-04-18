@@ -1,0 +1,49 @@
+.login-form {
+  width: 40%;
+  margin: 80px auto;
+}
+
+.login-form__heading {
+  text-align: center;
+}
+
+.login-form__inner {
+  margin-top: 30px;
+}
+
+.login-form__group {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.login-form__group-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form__label {
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+
+.login-form__input {
+  height: 36px;
+}
+
+.login-form__error-message {
+  margin-top: 7px;
+}
+
+.login-form__button {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.login-form__button-submit {
+  width: 100%;
+}
+
+.register__link {
+  margin-top: 20px;
+  text-align: center;
+}

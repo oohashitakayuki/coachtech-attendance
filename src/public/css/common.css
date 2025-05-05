@@ -42,6 +42,14 @@
   background-color: #FFF;
 }
 
+.tab-switch {
+  text-decoration: none;
+}
+
+.tab-switch.active {
+  font-weight: bold;
+}
+
 .submit-button {
   height: 40px;
   color: #FFF;

@@ -16,6 +16,8 @@
         勤務外
       @elseif ($status === '出勤中')
         出勤中
+      @elseif ($status === '休憩中')
+        休憩中
       @elseif ($status === '退勤済')
         退勤済
       @endif
@@ -30,14 +32,26 @@
           @csrf
           <button class="attendance-form__button-submit" type="submit">出勤</button>
         </form>
+
       @elseif ($status === '出勤中')
         <form action="{{ route('attendance.end') }}" method="post">
           @csrf
           <button class="attendance-form__button-submit" type="submit">退勤</button>
         </form>
-        <button class="attendance-form__button-submit" disabled>休憩入</button>
+
+        <form action="{{ route('rest.start') }}" method="post">
+          @csrf
+          <button class="attendance-form__button-submit" type="submit">休憩入</button>
+        </form>
+
+      @elseif ($status === '休憩中')
+        <form action="{{ route('rest.end') }}" method="post">
+          @csrf
+          <button class="attendance-form__button-submit" type="submit">休憩戻</button>
+        </form>
+
       @elseif ($status === '退勤済')
-        <p>お疲れ様でした。</p>
+        <div class="attendance-form__message">お疲れ様でした。</div>
       @endif
     </div>
   </div>

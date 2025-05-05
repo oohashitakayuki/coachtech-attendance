@@ -16,9 +16,7 @@ class CreateCorrectsTable extends Migration
         Schema::create('corrects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('rest_id')->constrained()->cascadeOnDelete();
             $table->string('comment');
-            $table->date('request_date');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\Correct;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,12 @@ class AttendanceController extends Controller
         $status = '勤務外';
 
         if ($attendance && $attendance->work_start && !$attendance->work_end) {
-            $status = '出勤中';
+            $lastRest = $attendance->rests()->latest()->first();
+            if ($lastRest && $lastRest->break_start && !$lastRest->break_end) {
+                $status = '休憩中';
+            } else {
+                $status = '出勤中';
+            }
         } elseif ($attendance && $attendance->work_end) {
             $status = '退勤済';
         }
@@ -59,20 +65,60 @@ class AttendanceController extends Controller
         $now = Carbon::now();
 
         $attendance = Attendance::where('user_id', $user->id)
-            ->where('date', $now->toDateString())
-            ->first();
+        ->where('date', $now->toDateString())
+        ->first();
 
         if ($attendance && !$attendance->work_end) {
             $attendance->update([
                 'work_end' => $now->toTimeString(),
             ]);
+
+            $start = Carbon::createFromFormat('H:i:s', $attendance->work_start);
+            $end = Carbon::createFromFormat('H:i:s', $now->toTimeString());
+            $workDuration = $start->diffInSeconds($end);
+
+            $totalBreakSeconds = $attendance->rests->sum(function ($rest) {
+                if ($rest->break_start && $rest->break_end) {
+                    $start = Carbon::createFromFormat('H:i:s', $rest->break_start);
+                    $end = Carbon::createFromFormat('H:i:s', $rest->break_end);
+                    return $start->diffInSeconds($end);
+                }
+                return 0;
+            });
+
+            $netWorkSeconds = $workDuration - $totalBreakSeconds;
+            $netWorkTime = gmdate('H:i:s', $netWorkSeconds);
+
+            $attendance->update([
+                'work_time' => $netWorkTime,
+            ]);
         }
 
-        return redirect()->route('attendance.index');
+            session(['attendance_status' => '退勤済']);
+
+            return redirect()->route('attendance.index');
     }
 
-    public function attendance()
+    public function showAttendanceList(Request $request)
     {
-        return view('attendance.list');
+        $yearMonth = $request->input('yearMonth', Carbon::now()->format('Y-m'));
+        $displayMonth = Carbon::createFromFormat('Y-m', $yearMonth)->format('Y/m');
+
+        $attendances = Attendance::where('user_id', Auth::id())
+            ->whereYear('date', substr($yearMonth, 0, 4))
+            ->whereMonth('date', substr($yearMonth, 5, 2))
+            ->with('rests')
+            ->get();
+
+        return view('attendance.list', compact('yearMonth', 'displayMonth', 'attendances'));
+    }
+
+    public function editAttendanceDetail($id)
+    {
+        $user = Auth::user();
+        $attendance = Attendance::with('rests')->where('id',$id)->first();
+        $correct = Correct::where('attendance_id', $attendance->id)->first();
+
+        return view('attendance.show', compact('user', 'attendance', 'correct'));
     }
 }

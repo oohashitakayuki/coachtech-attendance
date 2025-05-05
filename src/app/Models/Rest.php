@@ -13,8 +13,8 @@ class Rest extends Model
         'attendance_id', 'break_start', 'break_end', 'break_time'
     ];
 
-    public function user()
+    public function attendance()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Attendance::class);
     }
 }

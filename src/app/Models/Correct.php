@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Correct extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'attendance_id', 'comment'
+    ];
+
+    public function attendance()
+    {
+        return $this->belongsTo(Attendance::class);
+    }
 }

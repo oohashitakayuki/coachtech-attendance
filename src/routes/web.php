@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CorrectController;
+use App\Http\Controllers\RestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,10 @@ Route::middleware('auth')->group(function () {
   Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
   Route::post('/attendance/start', [AttendanceController::class, 'workStart'])->name('attendance.start');
   Route::post('/attendance/end', [AttendanceController::class, 'workEnd'])->name('attendance.end');
-  Route::get('/attendance/list', [AttendanceController::class, 'attendance'])->name('attendance.attendance');
+  Route::post('/rest/start', [RestController::class, 'breakStart'])->name('rest.start');
+  Route::post('/rest/end', [RestController::class, 'breakEnd'])->name('rest.end');
+  Route::get('/attendance/list', [AttendanceController::class, 'showAttendanceList'])->name('attendance.showAttendanceList');
+  Route::get('/attendance/{id}', [AttendanceController::class, 'editAttendanceDetail'])->name('attendance.editAttendanceDetail');
   Route::get('/stamp_correction_request/list', [CorrectController::class, 'showRequestList'])->name('attendance.showRequestList');
   Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

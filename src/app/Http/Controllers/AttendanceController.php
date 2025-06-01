@@ -98,9 +98,9 @@ class AttendanceController extends Controller
             ]);
         }
 
-            session(['attendance_status' => '退勤済']);
+        session(['attendance_status' => '退勤済']);
 
-            return redirect()->route('attendance.index');
+        return redirect()->route('attendance.index');
     }
 
     public function showAttendanceList(Request $request)

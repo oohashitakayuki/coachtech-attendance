@@ -17,33 +17,30 @@
       <a href="{{ route('attendance.showRequestList', ['tab' => 'approved-conformed']) }}" class="request-tab__approved-conformed tab-switch {{ $tab === 'approved-conformed' ? 'active' : '' }}">承認済み</a>
     </div>
     <table class="request-list__table">
-      <tr>
-        <th>状態</th>
-        <th>名前</th>
-        <th>対象日時</th>
-        <th>申請理由</th>
-        <th>申請日時</th>
-        <th>詳細</th>
+      <tr class="request-data">
+        <th class="request-data__label">状態</th>
+        <th class="request-data__label">名前</th>
+        <th class="request-data__label">対象日時</th>
+        <th class="request-data__label">申請理由</th>
+        <th class="request-data__label">申請日時</th>
+        <th class="request-data__label">詳細</th>
       </tr>
-      @forelse ($requests as $request)
-      <tr>
-        <td>{{ $tab === 'awaiting-approval' ? '承認待ち' : '' }}</td>
-        <td>{{ $request->attendance->user->name }}</td>
-        <td>{{ \Carbon\Carbon::parse($request->attendance->date)->format('Y/m/d') }}</td>
-        <td>{{ $request->comment }}</td>
-        <td>{{ \Carbon\Carbon::parse($request->created_at)->format('Y/m/d') }}</td>
-        <td><a href="{{ route('attendance.editAttendanceDetail', ['id' => $request->attendance->id]) }}">詳細</a></td>
+      @foreach ($corrects as $correct)
+      <tr class="request-data">
+        <td class="request-data__status">
+          @if ($tab === 'awaiting-approval')
+            <span class="request-status__awaiting-approval">承認待ち</span>
+          @elseif ($tab === 'approved-conformed')
+            <span class="request-status__approved-conformed">承認済み</span>
+          @endif
+        </td>
+        <td class="request-data__user-name">{{ $correct->attendance->user->name }}</td>
+        <td class="request-data__date">{{ \Carbon\Carbon::parse($correct->attendance->date)->format('Y/m/d') }}</td>
+        <td class="request-data__comment">{{ $correct->comment }}</td>
+        <td class="request-data__date">{{ \Carbon\Carbon::parse($correct->created_at)->format('Y/m/d') }}</td>
+        <td class="request-data__detail"><a href="{{ route('attendance.showAttendanceDetail', $correct->attendance->id) }}" class="request-data__detail-link">詳細</a></td>
       </tr>
-      @empty
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      @endforelse
+      @endforeach
     </table>
   </div>
 </div>

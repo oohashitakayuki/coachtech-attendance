@@ -1,0 +1,77 @@
+.attendance-form {
+  width: 300px;
+  margin: 120px auto;
+}
+
+.attendance-form__content {
+  text-align: center;
+}
+
+.attendance-form__status {
+  display: inline;
+  padding: 7px 10px 7px 13px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #696969;
+  background: #C8C8C8;
+  border-radius: 15px;
+  letter-spacing: 2px;
+}
+
+.attendance-form__date {
+  margin-top: 18px;
+  font-size: 24px;
+}
+
+.attendance-form__time {
+  margin-top: 20px;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.attendance-form__button {
+  margin-top: 39px;
+}
+
+.attendance-form__button-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.attendance-form__work-start,
+.attendance-form__work-end {
+  width: 130px;
+  height: 48px;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFF;
+  background: #000;
+  border: none;
+  border-radius: 15px;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+.attendance-form__break-start,
+.attendance-form__break-end {
+  width: 130px;
+  height: 48px;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  background: #FFF;
+  border: none;
+  border-radius: 15px;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+.attendance-form__message {
+  margin-top: 50px;
+  padding-left: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}

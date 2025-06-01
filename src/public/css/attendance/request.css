@@ -1,0 +1,102 @@
+.request-list {
+  width: 840px;
+  margin: 60px auto;
+}
+
+.request-list__heading {
+  padding-left: 30px;
+  position: relative;
+}
+
+.request-list__heading::before {
+  position: absolute;
+  top: 18px;
+  left: 5px;
+  width: 0;
+  height: 0;
+  border-top: 36px solid #000;
+  border-right: 3px solid #000;
+  border-left: 3px solid #000;
+  content: "";
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.request-list__content {
+  margin-top: 50px;
+}
+
+.request-tab {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000;
+}
+
+.request-tab__awaiting-approval {
+  margin-left: 50px;
+}
+
+.request-tab__approved-conformed {
+  margin-left: 130px;
+}
+
+.tab-switch {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tab-switch.active {
+  font-weight: bold;
+}
+
+.request-list__table {
+  width: 100%;
+  margin-top: 50px;
+  table-layout: fixed;
+  background: #FFF;
+  border-radius: 8px;
+}
+
+.request-data {
+  border-bottom: 2px solid #F0EFF2;
+}
+
+.request-data:first-child {
+  border-bottom: 3px solid #F0EFF2;
+}
+
+.request-data:last-child {
+  border: none;
+}
+
+.request-data__label {
+  padding: 10px 0;
+  color: #737373;
+}
+
+.request-data__status {
+  padding: 10px 0;
+  text-align: center;
+  color: #737373;
+}
+
+.request-data__user-name {
+  padding-left: 54px;
+  color: #737373;
+}
+
+.request-data__date,
+.request-data__comment {
+  padding-left: 36px;
+  color: #737373;
+}
+
+.request-data__detail {
+  text-align: center;
+}
+
+.request-data__detail-link {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}

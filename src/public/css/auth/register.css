@@ -32,6 +32,7 @@
 
 .register-form__error-message {
   margin-top: 7px;
+  color: #FF0000;
 }
 
 .register-form__button {

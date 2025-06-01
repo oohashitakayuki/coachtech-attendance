@@ -1,0 +1,69 @@
+.staff-list {
+  width: 840px;
+  margin: 60px auto;
+}
+
+.staff-list__heading {
+  padding-left: 30px;
+  position: relative;
+}
+
+.staff-list__heading::before {
+  position: absolute;
+  top: 18px;
+  left: 5px;
+  width: 0;
+  height: 0;
+  border-top: 36px solid #000;
+  border-right: 3px solid #000;
+  border-left: 3px solid #000;
+  content: "";
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.staff-list__table {
+  width: 100%;
+  margin-top: 30px;
+  table-layout: fixed;
+  background: #FFF;
+  border-radius: 8px;
+}
+
+.staff-data {
+  border-bottom: 2px solid #F0EFF2;
+}
+
+.staff-data:first-child {
+  border-bottom: 3px solid #F0EFF2;
+}
+
+.staff-data:last-child {
+  border: none;
+}
+
+.staff-data__label {
+  padding: 10px 0;
+  color: #737373;
+}
+
+.staff-data__user-name {
+  padding: 10px 0;
+  color: #737373;
+  text-align: center;
+}
+
+.staff-data__email-address {
+  color: #737373;
+  text-align: center;
+}
+
+.staff-data__detail {
+  text-align: center;
+}
+
+.staff-data__detail-link {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}

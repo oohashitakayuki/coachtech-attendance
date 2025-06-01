@@ -22,6 +22,7 @@
 
 .header-nav__link {
   color: #FFF;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -30,16 +31,18 @@
   color: #FFF;
   background: #000;
   font-size: 16px;
+  font-weight: bold;
   border: none;
   cursor: pointer;
 }
 
-.bg-attendance {
-  background-color: #F0EFF2;
-}
-
 .bg-auth {
   background-color: #FFF;
+}
+
+.bg-attendance,
+.bg-admin {
+  background-color: #F0EFF2;
 }
 
 .tab-switch {
@@ -56,8 +59,8 @@
   background: #000;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 3px;
   border: none;
+  border-radius: 3px;
   cursor: pointer;
 }
 

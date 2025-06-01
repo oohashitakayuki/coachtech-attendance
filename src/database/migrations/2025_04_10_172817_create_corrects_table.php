@@ -17,6 +17,7 @@ class CreateCorrectsTable extends Migration
             $table->id();
             $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
             $table->string('comment');
+            $table->timestamp('approved_at')->nullable();
             $table->timestamps();
         });
     }

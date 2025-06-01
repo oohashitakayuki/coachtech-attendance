@@ -65,8 +65,12 @@ class AttendanceController extends Controller
         $now = Carbon::now();
 
         $attendance = Attendance::where('user_id', $user->id)
-        ->where('date', $now->toDateString())
-        ->first();
+            ->where('date', $now->toDateString())
+            ->first();
+
+        if (!$attendance || !$attendance->work_start || $attendance->work_end) {
+            return redirect()->route('attendance.index');
+        }
 
         if ($attendance && !$attendance->work_end) {
             $attendance->update([
@@ -101,23 +105,35 @@ class AttendanceController extends Controller
 
     public function showAttendanceList(Request $request)
     {
-        $yearMonth = $request->input('yearMonth', Carbon::now()->format('Y-m'));
-        $displayMonth = Carbon::createFromFormat('Y-m', $yearMonth)->format('Y/m');
+        $user = Auth::user();
 
-        $attendances = Attendance::where('user_id', Auth::id())
-            ->whereYear('date', substr($yearMonth, 0, 4))
-            ->whereMonth('date', substr($yearMonth, 5, 2))
-            ->with('rests')
+        $currentMonth = $request->input('currentMonth', Carbon::now()->format('Y-m'));
+        $displayMonth = Carbon::createFromFormat('Y-m', $currentMonth)->format('Y/m');
+
+        $startDate = Carbon::createFromFormat('Y-m', $currentMonth)->startOfMonth();
+        $endDate = $startDate->copy()->endOfMonth();
+
+        $rawAttendances = Attendance::with(['correct', 'rests'])
+            ->where('user_id', $user->id)
+            ->whereBetween('date', [$startDate, $endDate])
             ->get();
 
-        return view('attendance.list', compact('yearMonth', 'displayMonth', 'attendances'));
+        $grouped = $rawAttendances->groupBy('date')->map(function ($items) {
+            return $items->first(function ($item) {
+                return $item->correct && $item->correct->approved_at;
+            }) ?? $items->first();
+        });
+
+        $attendances = $grouped->sortBy('date')->values();
+
+        return view('attendance.list', compact('currentMonth', 'displayMonth', 'attendances'));
     }
 
-    public function editAttendanceDetail($id)
+    public function showAttendanceDetail($id)
     {
         $user = Auth::user();
         $attendance = Attendance::with('rests')->where('id',$id)->first();
-        $correct = Correct::where('attendance_id', $attendance->id)->first();
+        $correct = Correct::where('attendance_id', $attendance->id)->latest()->first();
 
         return view('attendance.show', compact('user', 'attendance', 'correct'));
     }

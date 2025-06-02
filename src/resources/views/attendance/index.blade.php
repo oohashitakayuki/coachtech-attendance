@@ -27,29 +27,29 @@
     <div class="attendance-form__time" id="current-time">{{ $time }}</div>
 
     @if ($status === '勤務外')
-      <form class="attendance-form__button" action="{{ route('attendance.start') }}" method="post">
-        @csrf
-        <button class="attendance-form__work-start" type="submit">出勤</button>
-      </form>
+    <form class="attendance-form__button" action="{{ route('attendance.start') }}" method="post">
+      @csrf
+      <button class="attendance-form__work-start" type="submit">出勤</button>
+    </form>
 
     @elseif ($status === '出勤中')
-      <div class="attendance-form__button-box">
-        <form class="attendance-form__button" action="{{ route('attendance.end') }}" method="post">
-          @csrf
-          <button class="attendance-form__work-end" type="submit">退勤</button>
-        </form>
+    <div class="attendance-form__button-box">
+      <form class="attendance-form__button" action="{{ route('attendance.end') }}" method="post">
+        @csrf
+        <button class="attendance-form__work-end" type="submit">退勤</button>
+      </form>
 
-        <form class="attendance-form__button" action="{{ route('rest.start') }}" method="post">
-          @csrf
-          <button class="attendance-form__break-start" type="submit">休憩入</button>
-        </form>
-      </div>
+      <form class="attendance-form__button" action="{{ route('rest.start') }}" method="post">
+        @csrf
+        <button class="attendance-form__break-start" type="submit">休憩入</button>
+      </form>
+    </div>
 
     @elseif ($status === '休憩中')
-      <form class="attendance-form__button" action="{{ route('rest.end') }}" method="post">
-        @csrf
-        <button class="attendance-form__break-end" type="submit">休憩戻</button>
-      </form>
+    <form class="attendance-form__button" action="{{ route('rest.end') }}" method="post">
+      @csrf
+      <button class="attendance-form__break-end" type="submit">休憩戻</button>
+    </form>
 
     @elseif ($status === '退勤済')
       <p class="attendance-form__message">お疲れ様でした。</p>

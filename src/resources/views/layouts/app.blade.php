@@ -45,17 +45,17 @@
             </form>
           @else
             @if ($attendanceStatus === '退勤済')
-              <li class="header-nav__item"><a class="header-nav__link" href="/attendance/list">今月の出勤一覧</a></li>
-              <li class="header-nav__item"><a class="header-nav__link" href="/stamp_correction_request/list">申請一覧</a></li>
-              @else
-              <li class="header-nav__item"><a class="header-nav__link" href="/attendance">勤怠</a></li>
-              <li class="header-nav__item"><a class="header-nav__link" href="/attendance/list">勤怠一覧</a></li>
-              <li class="header-nav__item"><a class="header-nav__link" href="/stamp_correction_request/list">申請</a></li>
-              @endif
-              <form class="header-nav__button" action="/logout" method="post">
-                @csrf
-                <button onclick="location.href='{{ route('logout') }}'" class="header-nav__logout">ログアウト</button>
-              </form>
+            <li class="header-nav__item"><a class="header-nav__link" href="/attendance/list">今月の出勤一覧</a></li>
+            <li class="header-nav__item"><a class="header-nav__link" href="/stamp_correction_request/list">申請一覧</a></li>
+            @else
+            <li class="header-nav__item"><a class="header-nav__link" href="/attendance">勤怠</a></li>
+            <li class="header-nav__item"><a class="header-nav__link" href="/attendance/list">勤怠一覧</a></li>
+            <li class="header-nav__item"><a class="header-nav__link" href="/stamp_correction_request/list">申請</a></li>
+            @endif
+            <form class="header-nav__button" action="/logout" method="post">
+              @csrf
+              <button onclick="location.href='{{ route('logout') }}'" class="header-nav__logout">ログアウト</button>
+            </form>
           @endif
         </ul>
       </nav>

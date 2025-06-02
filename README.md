@@ -2,8 +2,8 @@
 
 ## 概要
 
-一般ユーザーと管理者ユーザー向けに勤怠管理機能を提供するアプリです。
-一般ユーザーは打刻や勤怠の一覧表示、勤怠情報の修正申請などを行うことができます。
+一般ユーザーと管理者ユーザー向けに勤怠管理機能を提供するアプリです。  
+一般ユーザーは打刻や勤怠の一覧表示、勤怠情報の修正申請などを行うことができます。  
 管理者ユーザーはスタッフの勤怠情報を一覧で確認したり、修正や修正申請の承認を行ったりすることが可能です。
 
 ![ホーム画面](https://github.com/user-attachments/assets/fe130003-3207-4d3f-ba32-d9a409e800c0)
@@ -108,25 +108,37 @@ php artisan migrate:fresh --seed
 
 **一般ユーザー**
 
+ユーザー1
+
 - 名前 -> 西 伶奈
 - メールアドレス -> reina.n@coachtech.com
 - パスワード -> password
+
+ユーザー2
 
 - 名前 -> 山田 太郎
 - メールアドレス -> taro.y@coachtech.com
 - パスワード -> password
 
+ユーザー3
+
 - 名前 -> 増田 一世
 - メールアドレス -> issei.m@coachtech.com
 - パスワード -> password
+
+ユーザー4
 
 - 名前 -> 山本 敬吉
 - メールアドレス -> keikichi.y@coachtech.com
 - パスワード -> password
 
+ユーザー5
+
 - 名前 -> 秋田 朋美
 - メールアドレス -> tomomi.a@coachtech.com
 - パスワード -> password
+
+ユーザー6
 
 - 名前 -> 中西 教夫
 - メールアドレス -> norio.n@coachtech.com
@@ -152,7 +164,7 @@ php artisan migrate:fresh --seed
 
 Mailtrapを利用して認証を行います。
 
-メールボックスの「Code Samples」から「Laravel 7.x and 8.x」を選択し、
+メールボックスの「Code Samples」から「Laravel 7.x and 8.x」を選択し、  
 表示されたコードを「.env」ファイルに以下のようにコピー＆ペーストしてください。
 
 ```
@@ -172,7 +184,7 @@ MAIL_FROM_NAME="${APP_NAME}"
 php artisan config:clear
 ```
 
-Mailtrapのアカウントをお持ちでない場合は、以下のリンクから会員登録をしてください。
+Mailtrapのアカウントをお持ちでない場合は、以下のリンクから会員登録をしてください。  
 https://mailtrap.io/
 
 ## ER図
